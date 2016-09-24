@@ -1,7 +1,17 @@
 angular.module('Eggly', [
+    'ui.router',
     'categories',
     'categories.bookmarks'
 ])
+.config(function($stateProvider, $urlRouterProvider){
+    $stateProvider
+      .state('eggly', {
+          url: '',
+          abstract:true
+
+      });
+      $urlRouterProvider.otherwise('/');
+})
   .controller('MainCtrl', function ($scope) {
     var main = this;
       $scope.categories = [
@@ -73,7 +83,7 @@ angular.module('Eggly', [
 
       function updateBookmark(bookmark) {
           var index = _.findIndex($scope.bookmarks, function (b) {
-              return b.id == bookmark.id
+              return b.id == bookmark.id;
           });
           $scope.bookmarks[index] = bookmark;
 
